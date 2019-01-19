@@ -401,7 +401,7 @@ is_file_named(p, cd)
 	    }
 	    break;
 	case 2:
-	    (void) strcpy(Namech, p);
+	    (void) strlcpy(Namech, p,sizeof(Namech));
 	    break;
 
 # if	defined(HAVECLONEMAJ)

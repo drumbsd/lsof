@@ -277,10 +277,10 @@ ncache_isroot(na, cp)
 	    }
 	    if (!mtp)
 		return(0);
-	    (void) strcpy(buf, Lf->fsdir);
+	    (void) strlcpy(buf, Lf->fsdir,sizeof(buf));
 	    if (buf[len - 1] != '/')
 		buf[len++] = '/';
-	    (void) strcpy(&buf[len], cp);
+	    (void) strlcpy(&buf[len], cp,sizeof(buf[len]));
 	    if (statsafely(buf, &sb) != 0
 	    ||  (unsigned long)sb.st_ino != Lf->inode)
 		return(0);
@@ -707,7 +707,7 @@ ncache_lookup(buf, blen, fp)
 	    return((char *)NULL);
 	cp = buf + blen - nl - 1;
 	rlen = blen - nl - 1;
-	(void) strcpy(cp, lc->nm);
+	(void) strlcpy(cp, lc->nm, sizeof(cp));
 /*
  * Look up the name cache entries that are parents of the node address.
  * Quit when:

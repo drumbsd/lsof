@@ -436,7 +436,7 @@ dcpath(rw, npw)
 		    ierr = 2;
 		    break;
 		}
-		(void) strcpy(&buf[i], p->pw_dir);
+		(void) strlcpy(&buf[i], p->pw_dir, sizeof(buf[i]));
 		i += l;
 		if (i > 0 && buf[i - 1] == '/' && *(cp1 + 1)) {
 
@@ -472,7 +472,7 @@ dcpath(rw, npw)
 		    *cp2 = '\0';
 		j = strlen(hn);
 		if ((j + i) < (int)sizeof(buf)) {
-		    (void) strcpy(&buf[i], hn);
+		    (void) strlcpy(&buf[i], hn, sizeof(buf[i]));
 		    i += j;
 		} else
 		    ierr = 2;
@@ -503,7 +503,7 @@ dcpath(rw, npw)
 			l--;
 		    }
 		    if ((i + l) < ((int)sizeof(buf) - 1)) {
-			(void) strcpy(&buf[i], cp2);
+			(void) strlcpy(&buf[i], cp2, sizeof(buf[i]));
 			i += l;
 			if (buf[i - 1] != '/') {
 			    if (i < ((int)sizeof(buf) - 2)) {
@@ -554,7 +554,7 @@ dcpath(rw, npw)
 		    ierr = 2;
 		    break;
 		}
-		(void) strcpy(&buf[i], p->pw_name);
+		(void) strlcpy(&buf[i], p->pw_name, sizeof(buf[i]));
 		i += l;
 		break;
 
@@ -567,7 +567,7 @@ dcpath(rw, npw)
 		if ((i + (l = strlen(hn))) >= (int)sizeof(buf))
 		    ierr = 2;
 		else {
-		    (void) strcpy(&buf[i], hn);
+		    (void) strlcpy(&buf[i], hn, sizeof(buf[i]));
 		    i += l;
 		}
 		break;
