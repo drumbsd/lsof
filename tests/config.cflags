@@ -1,0 +1,4 @@
+-DLT_DIAL_openbsd
+-DLT_CC
+-DLT_KMEM
+-DLT_VERS=3090
